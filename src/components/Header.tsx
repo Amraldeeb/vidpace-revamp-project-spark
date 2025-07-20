@@ -9,7 +9,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 z-50 text-black">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img 
@@ -23,19 +23,19 @@ export const Header = () => {
         <nav className="hidden md:flex items-center gap-6">
           <button 
             onClick={() => scrollToSection('about')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-gray-600 hover:text-black transition-colors"
           >
             About
           </button>
           <button 
             onClick={() => scrollToSection('services')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-gray-600 hover:text-black transition-colors"
           >
             Services
           </button>
           <button 
             onClick={() => scrollToSection('contact')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-gray-600 hover:text-black transition-colors"
           >
             Contact
           </button>
