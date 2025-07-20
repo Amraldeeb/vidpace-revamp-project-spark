@@ -5,16 +5,11 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
- base: '/vidpace-revamp-project-spark/',  // <== Add this line for GitHub Pages
-
-  server: {
-    host: "::",
-    port: 8080,
-  },
+  base: '/vidpace-revamp-project-spark/',  // <== GitHub Pages base path
 
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === 'development' && componentTagger()
   ].filter(Boolean),
 
   resolve: {
@@ -23,4 +18,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-
