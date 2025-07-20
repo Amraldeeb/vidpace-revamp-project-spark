@@ -11,7 +11,7 @@ export const Footer = () => {
               alt="VidPace Logo" 
               className="h-8 w-auto"
             />
-            <span className="text-xl font-bold">VidPace</span>
+            <span className="text-lg font-semibold text-gray-700">Youtube Management</span>
           </div>
           
           <div className="text-center md:text-right">

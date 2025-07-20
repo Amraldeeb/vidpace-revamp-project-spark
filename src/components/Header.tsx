@@ -17,7 +17,7 @@ export const Header = () => {
             alt="VidPace Logo" 
             className="h-8 w-auto"
           />
-          <span className="text-xl font-bold">VidPace</span>
+          <span className="text-lg font-semibold text-gray-700">Youtube Management</span>
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
