@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/vidpace-revamp-project-spark/',  // <== GitHub Pages base path
+  base: '/',  // <== GitHub Pages base path
 
   plugins: [
     react(),
