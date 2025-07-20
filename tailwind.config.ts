@@ -57,10 +57,10 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				vidpace: {
-					purple: 'hsl(var(--vidpace-purple))',
-					pink: 'hsl(var(--vidpace-pink))',
+					red: 'hsl(var(--vidpace-red))',
 					blue: 'hsl(var(--vidpace-blue))',
-					cyan: 'hsl(var(--vidpace-cyan))'
+					dark: 'hsl(var(--vidpace-dark))',
+					light: 'hsl(var(--vidpace-light))'
 				}
 			},
 			borderRadius: {

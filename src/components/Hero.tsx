@@ -35,7 +35,7 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
-            <Zap className="h-4 w-4 text-vidpace-purple" />
+            <Zap className="h-4 w-4 text-vidpace-red" />
             <span className="text-sm font-medium">Automate Your Content Creation</span>
           </div>
 

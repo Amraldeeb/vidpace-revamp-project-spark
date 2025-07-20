@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Play } from "lucide-react"
+import vidpaceLogo from "@/assets/vidpace-logo.png"
 
 export const Header = () => {
   const scrollToSection = (id: string) => {
@@ -11,10 +11,12 @@ export const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 hero-gradient rounded-lg flex items-center justify-center">
-            <Play className="h-5 w-5 text-white fill-white" />
-          </div>
+        <div className="flex items-center gap-3">
+          <img 
+            src={vidpaceLogo} 
+            alt="VidPace Logo" 
+            className="h-8 w-auto"
+          />
           <span className="text-xl font-bold">VidPace</span>
         </div>
         

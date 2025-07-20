@@ -9,43 +9,43 @@
     --background: 0 0% 3%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 8%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 8%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 300 70% 55%;
+    --primary: 0 84% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 300 85% 70%;
+    --primary-glow: 0 100% 70%;
 
-    --secondary: 240 10% 15%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 10% 12%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 280 100% 60%;
+    --accent: 220 100% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 10% 15%;
-    --input: 240 10% 12%;
-    --ring: 300 70% 55%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 0 84% 60%;
 
     --radius: 0.75rem;
 
-    /* VidPace Brand Colors */
-    --vidpace-purple: 280 100% 60%;
-    --vidpace-pink: 320 100% 70%;
-    --vidpace-blue: 240 100% 65%;
-    --vidpace-cyan: 180 100% 70%;
+    /* VidPace Brand Colors - Black, Red, White, Blue */
+    --vidpace-red: 0 84% 60%;
+    --vidpace-blue: 220 100% 60%;
+    --vidpace-dark: 0 0% 8%;
+    --vidpace-light: 0 0% 98%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--vidpace-purple)), hsl(var(--vidpace-pink)));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--vidpace-blue)), hsl(var(--vidpace-cyan)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--vidpace-red)), hsl(var(--vidpace-blue)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--vidpace-blue)), hsl(var(--vidpace-dark)));
     --gradient-subtle: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
 
     /* Shadows */
@@ -72,25 +72,25 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light mode adjustments (keeping dark as primary) */
+  /* Light mode adjustments */
   .light {
     --background: 0 0% 98%;
-    --foreground: 240 10% 10%;
+    --foreground: 0 0% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
-    --primary: 280 100% 45%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 84% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-    --accent: 280 100% 50%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 46%;
+    --accent: 220 100% 50%;
     --accent-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 280 100% 45%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 84% 50%;
   }
 }
 
