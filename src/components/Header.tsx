@@ -1,11 +1,17 @@
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import vidpaceLogo from "@/assets/vidpace-logo.png"
 
 export const Header = () => {
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ 
-      behavior: 'smooth' 
-    })
+    const navigate = useNavigate()
+  const location = useLocation()
+ const scrollToSection = (id: string) => {
+    if (location.pathname !== "/") {
+      navigate("/", { replace: false, state: { scrollTo: id } });// Delay so DOM has time to load
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   return (
