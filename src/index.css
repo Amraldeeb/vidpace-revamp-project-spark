@@ -25,7 +25,7 @@
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 220 100% 60%;
+    --accent: 0 84% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -37,17 +37,15 @@
 
     --radius: 0.75rem;
 
-    /* VidPace Brand Colors - Black, Red, White, Blue */
+    /* VidPace Brand Colors - Black, Red, White, Red */
     --vidpace-red: 0 84% 60%;
-    --vidpace-blue: 220 100% 60%;
+    --vidpace-blue: 0 84% 60%;
     --vidpace-dark: 0 0% 8%;
     --vidpace-light: 0 0% 98%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--vidpace-red)), hsl(var(--vidpace-blue)));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--vidpace-blue)), hsl(var(--vidpace-dark)));
-    --gradient-subtle: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
-
+/* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--vidpace-red)), hsl(var(--vidpace-red)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--vidpace-red)), hsl(var(--vidpace-dark)));
     /* Shadows */
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
     --shadow-card: 0 10px 30px -10px hsl(var(--primary) / 0.2);
@@ -86,7 +84,7 @@
     --secondary-foreground: 0 0% 10%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 46%;
-    --accent: 220 100% 50%;
+    --accent: 0 84% 50%;
     --accent-foreground: 0 0% 100%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;

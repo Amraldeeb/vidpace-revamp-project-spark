@@ -15,44 +15,40 @@ import {
 
 export const Services = () => {
   const servicesWeProvide = [
-    {
-      icon: Megaphone,
-      title: "Social Media Ads",
-      description: "Strategic advertising campaigns to boost your reach and engagement"
-    },
-    {
-      icon: Video,
-      title: "Videography",
-      description: "Professional video production from concept to final cut"
-    },
-    {
-      icon: Users,
-      title: "Social Media Management",
-      description: "Complete social media strategy and daily management"
-    },
-    {
-      icon: FileText,
-      title: "Long & Short Form Content",
-      description: "Engaging video content and professional thumbnails for all platforms"
-    },
-    {
-      icon: Search,
-      title: "SEO Optimization",
-      description: "Video optimization for search engines with authentic voice-over and scripts"
-    },
-    {
-      icon: Youtube,
-      title: "YouTube Channel Management",
-      description: "End-to-end YouTube channel growth and optimization"
-    }
-  ]
+  {
+    icon: Megaphone,
+    title: "Social Media Ads",
+    description: "Strategic advertising campaigns to boost your reach and engagement"
+  },
+  {
+    icon: Users,
+    title: "Youtube Channel Management",
+    description: "Complete content strategy and daily management"
+  },
+  {
+    icon: FileText,
+    title: "Long & Short Form Content",
+    description: "Engaging video content and professional thumbnails for all platforms"
+  },
+  {
+    icon: Search,
+    title: "SEO Optimization",
+    description: "Video optimization for search engines with authentic voice-over and scripts"
+  },
+  {
+    icon: Youtube,
+    title: "YouTube Channel Management",
+    description: "End-to-end YouTube channel growth and optimization"
+  }
+]
 
-  const servicesWeDontProvide = [
-    "Generic content templates",
-    "One-size-fits-all solutions", 
-    "Automated bot interactions",
-    "Low-quality mass production"
-  ]
+const servicesWeDontProvide = [
+  "Videography",
+  "Generic content templates",
+  "One-size-fits-all solutions", 
+  "Automated bot interactions",
+  "Low-quality mass production"
+]
 
   return (
     <section id="services" className="py-20">
