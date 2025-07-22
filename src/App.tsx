@@ -6,10 +6,23 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 const queryClient = new QueryClient();
 
+const location = useLocation();
+useEffect(() => {
+  const id = location.state?.scrollTo;
+  if (id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}, [location]);
+
 const App = () => (
+ 
   <QueryClientProvider client={queryClient}>
     <TooltipProvider> 
       <Toaster />

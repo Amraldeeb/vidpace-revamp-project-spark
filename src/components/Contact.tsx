@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Calendar, Send, MessageCircle } from "lucide-react"
 import { Link } from "react-router-dom"
+import emailjs from '@emailjs/browser';
+
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,23 +17,37 @@ export const Contact = () => {
   })
   const { toast } = useToast()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!formData.firstName || !formData.lastName || !formData.email) {
-      toast({
-        title: "Please fill in all fields",
-        variant: "destructive"
-      })
-      return
-    }
-    
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!formData.firstName || !formData.lastName || !formData.email) {
     toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible."
-    })
-    
-    setFormData({ firstName: '', lastName: '', email: '' })
+      title: "Please fill in all fields",
+      variant: "destructive"
+    });
+    return;
   }
+
+  const serviceID = 'service_9g1l3ap';     // replace with your EmailJS service ID
+  const templateID = 'template_qpwkovw';   // replace with your EmailJS template ID
+  const userID = 'oGiTlm62hWPMpKBa9';           // replace with your EmailJS user/public key
+
+  emailjs.send(serviceID, templateID, formData, userID)
+    .then(() => {
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible."
+      });
+      setFormData({ firstName: '', lastName: '', email: '' });
+    })
+    .catch(() => {
+      toast({
+        title: "Failed to send message.",
+        description: "Please try again later.",
+        variant: "destructive"
+      });
+    });
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
