@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Calendar, Send, MessageCircle } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -65,15 +66,12 @@ export const Contact = () => {
                 <p className="text-muted-foreground mb-6">
                   Book a meeting with our content strategy experts to discuss your goals and create a custom plan.
                 </p>
-                <Button 
-                  variant="accent" 
-                  size="lg" 
-                  className="w-full"
-                  onClick={() => window.open('https://www.vidpace.com/schedule-a-call', '_blank')}
-                >
-                  <Calendar className="h-5 w-5" />
-                  Book Your Call
-                </Button>
+               <Link to="/schedule" className="w-full block">
+  <Button variant="accent" size="lg" className="w-full">
+    <Calendar className="h-5 w-5" />
+    Book Your Call
+  </Button>
+</Link>
               </CardContent>
             </Card>
 
