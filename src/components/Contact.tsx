@@ -13,14 +13,15 @@ export const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    message: ''
   })
   const { toast } = useToast()
 
  const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
 
-  if (!formData.firstName || !formData.lastName || !formData.email) {
+  if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
     toast({
       title: "Please fill in all fields",
       variant: "destructive"
@@ -35,7 +36,7 @@ export const Contact = () => {
   const templateParams = {
     from_name: `${formData.firstName} ${formData.lastName}`,
     from_email: formData.email,
-    message: 'This is a placeholder message. Please add a message input field to your form if you want to collect messages from users.'
+    message: formData.message
   };
 
   emailjs.send(serviceID, templateID, templateParams, userID)
@@ -142,6 +143,18 @@ export const Contact = () => {
                       placeholder="john@example.com"
                       className="mt-1"
                     />
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Message</Label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Your message..."
+                      rows={5}
+                      className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    ></textarea>
                   </div>
                   <Button type="submit" variant="hero" size="lg" className="w-full">
                     <Send className="h-5 w-5" />
