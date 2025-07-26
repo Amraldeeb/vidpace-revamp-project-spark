@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <title>Page Not Found</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
+      // Single Page Apps for GitHub Pages with Custom Domain
       // This script takes the current url and converts the path and query
-      // string into a hash, e.g. /github-repo-name/?id=blah becomes /github-repo-name/#/?id=blah
-      // This prevents GitHub Pages from returning a 404 error
-      (function( ){var l=window.location;if(l.search){"/".indexOf(l.pathname)===0||l.pathname.indexOf("/")===0?(l.replace(l.protocol+"//"+l.hostname+(l.port?":"+l.port:"")+"/"+l.pathname.slice(1)+"#"+l.search)):l.replace(l.protocol+"//"+l.hostname+(l.port?":"+l.port:"")+"/"+l.pathname+"#"+l.search)}else if(l.pathname.indexOf("/")===0){l.replace(l.protocol+"//"+l.hostname+(l.port?":"+l.port:"")+"/"+l.pathname.slice(1)+"#"+l.pathname.slice(1))}else{l.replace(l.protocol+"//"+l.hostname+(l.port?":"+l.port:"")+"/"+l.pathname+"#"+l.pathname)}}());
+      // string into a hash, e.g. /path/to/page?id=blah becomes /#/path/to/page?id=blah
+      // This prevents GitHub Pages from returning a 404 error for client-side routes.
+      (function() {
+        var l = window.location;
+        var path = l.pathname;
+        var search = l.search;
+        var hash = l.hash;
+
+        // Only redirect if not already a hash path
+        if (hash.indexOf(path) === -1) {
+          l.replace(l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") + "/#" + path + search + hash);
+        }
+      })();
     </script>
   </head>
   <body>
