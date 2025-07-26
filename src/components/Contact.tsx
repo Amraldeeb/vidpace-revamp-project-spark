@@ -45,7 +45,7 @@ export const Contact = () => {
         title: "Message sent!",
         description: "We'll get back to you as soon as possible."
       });
-      setFormData({ firstName: '', lastName: '', email: '' });
+      setFormData({ firstName: '', lastName: '', email: '', message: '' });
     })
     .catch(() => {
       toast({
@@ -56,7 +56,7 @@ export const Contact = () => {
     });
 };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
