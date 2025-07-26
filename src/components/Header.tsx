@@ -8,7 +8,11 @@ export const Header = () => {
   const location = useLocation()
  const scrollToSection = (id: string) => {
     if (location.pathname !== "/") {
-      navigate("/", { replace: false, state: { scrollTo: id } });// Delay so DOM has time to load
+      navigate("/");
+      // Use a timeout to ensure the page has rendered before attempting to scroll
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100); 
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     }
@@ -58,3 +62,5 @@ export const Header = () => {
     </header>
   )
 }
+
+
