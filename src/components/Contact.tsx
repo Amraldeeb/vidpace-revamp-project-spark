@@ -32,7 +32,13 @@ export const Contact = () => {
   const templateID = 'template_qpwkovw';   // replace with your EmailJS template ID
   const userID = 'oGiTlm62hWPMpKBa9';           // replace with your EmailJS user/public key
 
-  emailjs.send(serviceID, templateID, formData, userID)
+  const templateParams = {
+    from_name: `${formData.firstName} ${formData.lastName}`,
+    from_email: formData.email,
+    message: 'This is a placeholder message. Please add a message input field to your form if you want to collect messages from users.'
+  };
+
+  emailjs.send(serviceID, templateID, templateParams, userID)
     .then(() => {
       toast({
         title: "Message sent!",
