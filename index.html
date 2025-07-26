@@ -21,15 +21,21 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <script type="text/javascript">
+      // Define a global window.profile object to prevent errors from third-party scripts
+      if (typeof window.profile === 'undefined' ) {
+        window.profile = {};
+      }
+    </script>
+    <script type="text/javascript">
       // Single Page Apps for GitHub Pages with custom domain
       // This script ensures that all paths are converted to hash paths for HashRouter
-      (function( ) {
+      (function() {
         var path = window.location.pathname;
         var search = window.location.search;
         var hash = window.location.hash;
         var base = document.querySelector("base")?.getAttribute("href") || "/";
 
-        // Only redirect if not already a hash path and not the root
+        // Redirect if the path is not the base and it's not already a hash path
         if (path !== base && hash.indexOf(path) === -1) {
           window.location.replace(base + "#" + path + search + hash);
         }
