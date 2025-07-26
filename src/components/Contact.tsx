@@ -89,12 +89,10 @@ export const Contact = () => {
                 <p className="text-muted-foreground mb-6">
                   Book a meeting with our content strategy experts to discuss your goals and create a custom plan.
                 </p>
-               <Link to="/schedule" className="w-full block">
-  <Button variant="accent" size="lg" className="w-full">
+  <Button variant="accent" size="lg" className="w-full" onClick={() => window.location.href = "/schedule"}>
     <Calendar className="h-5 w-5" />
     Book Your Call
   </Button>
-</Link>
               </CardContent>
             </Card>
 
@@ -169,3 +167,5 @@ export const Contact = () => {
     </section>
   )
 }
+
+export default Contact;
