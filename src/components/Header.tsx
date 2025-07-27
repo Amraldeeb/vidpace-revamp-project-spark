@@ -43,6 +43,12 @@ export const Header = () => {
           >
             Services
           </button>
+          <Link 
+            to="/pricing"
+            className="text-gray-600 hover:text-black transition-colors"
+          >
+            Pricing
+          </Link>
           <button 
             onClick={() => scrollToSection('contact')}
             className="text-gray-600 hover:text-black transition-colors"
@@ -62,5 +68,3 @@ export const Header = () => {
     </header>
   )
 }
-
-
