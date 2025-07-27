@@ -43,12 +43,12 @@ export const Header = () => {
           >
             Services
           </button>
-          <Link 
-            to="/pricing"
+          <button 
+            onClick={() => scrollToSection('pricing')}
             className="text-gray-600 hover:text-black transition-colors"
           >
             Pricing
-          </Link>
+          </button>
           <button 
             onClick={() => scrollToSection('contact')}
             className="text-gray-600 hover:text-black transition-colors"

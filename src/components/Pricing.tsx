@@ -21,8 +21,8 @@ export const Pricing = () => {
       icon: <Zap className="h-6 w-6" />,
       badge: "Most Popular",
       badgeVariant: "default" as const,
+      target: "10,000 subscribers",
       features: [
-        "Goal: 10,000 subscribers",
         "4 long-form videos/month",
         "4 short-form videos/month for increased reach",
         "High-quality, tailored thumbnails",
@@ -45,8 +45,8 @@ export const Pricing = () => {
       icon: <Star className="h-6 w-6" />,
       badge: "Best Value",
       badgeVariant: "secondary" as const,
+      target: "50,000 subscribers",
       features: [
-        "Goal: 50,000 subscribers",
         "6 long-form videos/month",
         "6 short-form videos/month that can be used with other social media platforms",
         "Premium thumbnails for every video",
@@ -60,16 +60,17 @@ export const Pricing = () => {
     },
     {
       id: "pro",
-      name: "Pro (Full Automation)",
+      name: "Pro",
+      subtitle_name: "(Full Automation)",
       price: "$1,200",
       period: "/month",
       description: "From 50K → 100K+ subscribers: Lead & Monetize",
       subtitle: "You're ready to build a brand and revenue. We become your full-time creative partner.",
       icon: <Crown className="h-6 w-6" />,
-      badge: "Enterprise",
+      badge: "Celebrity",
       badgeVariant: "destructive" as const,
+      target: "100,000+ subscribers",
       features: [
-        "Goal: 100,000+ subscribers",
         "12+ long-form videos/month",
         "8+ short-form videos/month for shareability",
         "Premium custom thumbnails & creative design",
@@ -144,7 +145,10 @@ export const Pricing = () => {
                     {pkg.icon}
                   </div>
                   <div>
-                    <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
+                    <CardTitle className="text-2xl font-bold">
+                      {pkg.name}
+                      {pkg.subtitle_name && <span className="text-lg font-normal text-muted-foreground ml-1">{pkg.subtitle_name}</span>}
+                    </CardTitle>
                     <CardDescription className="text-sm font-medium text-muted-foreground">
                       {pkg.description}
                     </CardDescription>
@@ -170,6 +174,18 @@ export const Pricing = () => {
                     </p>
                   </div>
                 ))}
+
+                {/* Target */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
+                    Target:
+                  </h4>
+                  <div className="p-3 bg-primary/10 rounded-lg border border-primary/20">
+                    <p className="text-sm font-semibold text-primary">
+                      {pkg.target}
+                    </p>
+                  </div>
+                </div>
 
                 {/* Features */}
                 <div className="space-y-3">
