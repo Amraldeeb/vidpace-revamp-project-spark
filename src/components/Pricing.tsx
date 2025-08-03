@@ -36,6 +36,29 @@ export const Pricing = () => {
       ]
     },
     {
+      id: "viral",
+      name: "Viral",
+      price: "$250",
+      period: "/month",
+      description: "Short-form content focus: Maximize Reach",
+      subtitle: "Perfect for creators who want to focus on viral short-form content.",
+      icon: <Rocket className="h-6 w-6" />,
+      badge: "Trending",
+      badgeVariant: "secondary" as const,
+      target: "Viral reach",
+      features: [
+        "12 short-form videos/month",
+        "Optimized for viral potential",
+        "Trending hashtags & keywords",
+        "Cross-platform optimization",
+        "Quick turnaround editing",
+        "Performance analytics"
+      ],
+      highlights: [
+        "Focus on short-form content that's designed to go viral and maximize your reach."
+      ]
+    },
+    {
       id: "growth",
       name: "Growth",
       price: "$600",
@@ -109,20 +132,22 @@ export const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {packages.map((pkg, index) => (
             <Card 
               key={pkg.id} 
               className={`relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 index === 0 ? 'border-primary/50 shadow-lg shadow-primary/20' : 
-                index === 1 ? 'border-2 border-primary shadow-xl shadow-primary/30 scale-105' : 
+                index === 1 ? 'border-accent/50 shadow-lg shadow-accent/20' :
+                index === 2 ? 'border-2 border-primary shadow-xl shadow-primary/30 scale-105' : 
                 'border-accent/50 shadow-lg shadow-accent/20'
               }`}
             >
               {/* Background Gradient */}
               <div className={`absolute inset-0 opacity-5 ${
                 index === 0 ? 'hero-gradient' : 
-                index === 1 ? 'hero-gradient' : 
+                index === 1 ? 'accent-gradient' :
+                index === 2 ? 'hero-gradient' : 
                 'accent-gradient'
               }`} />
               
@@ -139,7 +164,8 @@ export const Pricing = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`p-3 rounded-xl ${
                     index === 0 ? 'bg-primary/10 text-primary' : 
-                    index === 1 ? 'bg-primary/10 text-primary' : 
+                    index === 1 ? 'bg-accent/10 text-accent' :
+                    index === 2 ? 'bg-primary/10 text-primary' : 
                     'bg-accent/10 text-accent'
                   }`}>
                     {pkg.icon}
@@ -205,7 +231,7 @@ export const Pricing = () => {
 
               <CardFooter className="relative z-10 pt-6">
                 <Button 
-                  variant={index === 1 ? "hero" : "outline"}
+                  variant={index === 2 ? "hero" : "outline"}
                   size="lg"
                   className="w-full group"
                   onClick={scrollToContact}
