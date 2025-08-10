@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Schedule from "./pages/Schedule";
 import PricingPage from "./pages/Pricing";
+import ROICalculatorPage from "./pages/ROICalculator";
 import NotFound from "./pages/NotFound";
 import { Contact } from "./components/Contact";
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/roi-calculator" element={<ROICalculatorPage />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

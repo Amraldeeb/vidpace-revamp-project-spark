@@ -49,6 +49,12 @@ export const Header = () => {
           >
             Pricing
           </button>
+          <Link 
+            to="/roi-calculator"
+            className="text-gray-600 hover:text-black transition-colors"
+          >
+            ROI Calculator
+          </Link>
           <button 
             onClick={() => scrollToSection('contact')}
             className="text-gray-600 hover:text-black transition-colors"
