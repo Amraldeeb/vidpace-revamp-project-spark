@@ -100,7 +100,7 @@ export const ROICalculator = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    if (EMAILJS_PUBLIC_KEY !== 'oGiTlm62hWPMpKBa9') {
+    if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
       emailjs.init(EMAILJS_PUBLIC_KEY);
     }
   }, []);
