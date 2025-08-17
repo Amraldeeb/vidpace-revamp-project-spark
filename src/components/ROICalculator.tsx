@@ -236,7 +236,7 @@ export const ROICalculator = () => {
       };
 
       // Check if EmailJS is configured
-      if (EMAILJS_SERVICE_ID === 'service_9g1l3ap' || EMAILJS_TEMPLATE_ID === 'template_xmx9gqr') {
+      if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
         console.log('EmailJS not configured. Template params would be:', templateParams);
         alert('EmailJS not configured yet. Check console for template data.');
         setShowFullResults(true);
