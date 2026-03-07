@@ -14,10 +14,10 @@ export const Pricing = () => {
     {
       id: "starter",
       name: "Starter",
-      price: "$400",
+      price: "$900",
       period: "/month",
       description: "From 0 → 10K subscribers: Launch & Position",
-      subtitle: "Perfect for creators ready to get started but need full support.",
+      subtitle: "Perfect for serious creators ready to get started with professional support.",
       icon: <Zap className="h-6 w-6" />,
       badge: "Most Popular",
       badgeVariant: "default" as const,
@@ -36,46 +36,47 @@ export const Pricing = () => {
       ]
     },
     {
-      id: "viral",
-      name: "Viral",
-      price: "$250",
+      id: "autopilot",
+      name: "Autopilot",
+      price: "$1,800",
       period: "/month",
-      description: "Short-form content focus: Maximize Reach",
-      subtitle: "Perfect for creators who want to focus on viral short-form content.",
+      description: "General Niche: Complete Hands-Off Content",
+      subtitle: "Perfect for entrepreneurs who want a fully automated content machine.",
       icon: <Rocket className="h-6 w-6" />,
-      badge: "Trending",
+      badge: "Premium",
       badgeVariant: "secondary" as const,
-      target: "Viral reach",
+      target: "Passive income channel",
       features: [
-        "12 short-form videos/month",
-        "Optimized for viral potential",
-        "Trending hashtags & keywords",
-        "Cross-platform optimization",
-        "Quick turnaround editing",
-        "Performance analytics"
+        "12 long-form videos/month (fully scripted & produced)",
+        "8 short-form videos/month for cross-platform reach",
+        "AI-powered voiceovers or professional narration",
+        "Automated posting schedule & optimization",
+        "Faceless or general niche content strategy",
+        "Monthly performance analytics & optimization reports"
       ],
       highlights: [
-        "Focus on short-form content that's designed to go viral and maximize your reach."
+        "You do nothing. We handle everything—scripting, voiceover, editing, posting, and growth.",
+        "Perfect for building passive income channels with zero effort required from you."
       ]
     },
     {
       id: "growth",
       name: "Growth",
-      price: "$600",
+      price: "$2,800",
       period: "/month",
       description: "From 10K → 50K subscribers: Build & Expand",
-      subtitle: "Your channel is gaining traction — now let's step it up.",
+      subtitle: "Your channel is gaining traction — now let's step it up aggressively.",
       icon: <Star className="h-6 w-6" />,
       badge: "Best Value",
       badgeVariant: "secondary" as const,
       target: "50,000 subscribers",
       features: [
-        "6 long-form videos/month",
-        "6 short-form videos/month that can be used with other social media platforms",
-        "Premium thumbnails for every video",
-        "Unique editing style that holds attention",
-        "Regular posting & audience engagement support",
-        "Bi-weekly strategy calls"
+        "8 long-form videos/month",
+        "10 short-form videos/month for multi-platform distribution",
+        "Premium thumbnails with A/B testing",
+        "Unique editing style & brand consistency",
+        "Weekly audience engagement & community management",
+        "Bi-weekly strategy calls with dedicated team"
       ],
       highlights: [
         "You keep creating. We elevate your brand and engagement — consistently and creatively."
@@ -83,27 +84,27 @@ export const Pricing = () => {
     },
     {
       id: "pro",
-      name: "Pro",
-      subtitle_name: "(Full Automation)",
-      price: "$1,200",
+      name: "Elite",
+      subtitle_name: "(Full Scale)",
+      price: "$5,000",
       period: "/month",
       description: "From 50K → 100K+ subscribers: Lead & Monetize",
-      subtitle: "You're ready to build a brand and revenue. We become your full-time creative partner.",
+      subtitle: "You're ready to build an empire. We become your full-time creative partner.",
       icon: <Crown className="h-6 w-6" />,
       badge: "Celebrity",
       badgeVariant: "destructive" as const,
       target: "100,000+ subscribers",
       features: [
-        "12+ long-form videos/month",
-        "8+ short-form videos/month for shareability",
-        "Premium custom thumbnails & creative design",
-        "Strategic content direction & storytelling",
-        "Dedicated team and channel strategy",
-        "Brand deals support, pitch decks, monetization setup",
-        "Weekly planning sessions + performance reports"
+        "16+ long-form videos/month with custom strategy",
+        "12+ short-form videos/month for viral potential",
+        "Premium custom thumbnails & brand design system",
+        "Strategic content direction & storytelling framework",
+        "Dedicated team + dedicated account manager",
+        "Brand deals support, sponsorship negotiation, monetization setup",
+        "Weekly planning sessions + detailed performance reports"
       ],
       highlights: [
-        "Complete channel management, brand output, and monetization strategy — handled."
+        "Complete channel management, brand positioning, and monetization strategy — fully handled."
       ]
     }
   ]
@@ -138,16 +139,16 @@ export const Pricing = () => {
               key={pkg.id} 
               className={`relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 index === 0 ? 'border-primary/50 shadow-lg shadow-primary/20' : 
-                index === 1 ? 'border-accent/50 shadow-lg shadow-accent/20' :
-                index === 2 ? 'border-2 border-primary shadow-xl shadow-primary/30 scale-105' : 
+                index === 1 ? 'border-2 border-primary shadow-xl shadow-primary/30 scale-105' :
+                index === 2 ? 'border-accent/50 shadow-lg shadow-accent/20' : 
                 'border-accent/50 shadow-lg shadow-accent/20'
               }`}
             >
               {/* Background Gradient */}
               <div className={`absolute inset-0 opacity-5 ${
                 index === 0 ? 'hero-gradient' : 
-                index === 1 ? 'accent-gradient' :
-                index === 2 ? 'hero-gradient' : 
+                index === 1 ? 'hero-gradient' :
+                index === 2 ? 'accent-gradient' : 
                 'accent-gradient'
               }`} />
               
@@ -164,8 +165,8 @@ export const Pricing = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`p-3 rounded-xl ${
                     index === 0 ? 'bg-primary/10 text-primary' : 
-                    index === 1 ? 'bg-accent/10 text-accent' :
-                    index === 2 ? 'bg-primary/10 text-primary' : 
+                    index === 1 ? 'bg-primary/10 text-primary' :
+                    index === 2 ? 'bg-accent/10 text-accent' : 
                     'bg-accent/10 text-accent'
                   }`}>
                     {pkg.icon}
@@ -231,7 +232,7 @@ export const Pricing = () => {
 
               <CardFooter className="relative z-10 pt-6">
                 <Button 
-                  variant={index === 2 ? "hero" : "outline"}
+                  variant={index === 1 ? "hero" : "outline"}
                   size="lg"
                   className="w-full group"
                   onClick={scrollToContact}

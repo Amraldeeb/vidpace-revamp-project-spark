@@ -18,34 +18,34 @@ export const ROICalculator = () => {
     {
       id: 'starter',
       name: 'Starter',
-      price: 400,
+      price: 900,
       description: 'From 0 → 10K subscribers: Launch & Position',
       badge: 'Most Popular',
       badgeColor: 'bg-blue-600',
       avgGrowth: 150
     },
     {
-      id: 'viral',
-      name: 'Viral',
-      price: 250,
-      description: 'Short-form content focus: Maximize Reach',
-      badge: 'Trending',
-      badgeColor: 'bg-gray-600',
-      avgGrowth: 200
+      id: 'autopilot',
+      name: 'Autopilot',
+      price: 1800,
+      description: 'General Niche: Complete Hands-Off Content',
+      badge: 'Premium',
+      badgeColor: 'bg-purple-600',
+      avgGrowth: 180
     },
     {
       id: 'growth',
       name: 'Growth',
-      price: 600,
+      price: 2800,
       description: 'From 10K → 50K subscribers: Build & Expand',
       badge: 'Best Value',
       badgeColor: 'bg-blue-600',
       avgGrowth: 120
     },
     {
-      id: 'pro',
-      name: 'Pro (Full Automation)',
-      price: 1200,
+      id: 'elite',
+      name: 'Elite (Full Scale)',
+      price: 5000,
       description: 'From 50K → 100K+ subscribers: Lead & Monetize',
       badge: 'Celebrity',
       badgeColor: 'bg-red-600',
@@ -63,7 +63,7 @@ export const ROICalculator = () => {
 
   const successStories = [
     { name: "Sarah M.", niche: "Lifestyle", growth: "10K → 85K", time: "8 months", package: "Growth" },
-    { name: "Mike T.", niche: "Tech", growth: "5K → 120K", time: "12 months", package: "Pro" },
+    { name: "Mike T.", niche: "Tech", growth: "5K → 120K", time: "12 months", package: "Elite" },
     { name: "Lisa K.", niche: "Finance", growth: "0 → 45K", time: "6 months", package: "Starter" }
   ];
 
