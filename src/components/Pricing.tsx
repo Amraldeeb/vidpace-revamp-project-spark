@@ -14,10 +14,11 @@ export const Pricing = () => {
     {
       id: "starter",
       name: "Starter",
+      subtitle_name: "The Launchpad",
       price: "$900",
       period: "/month",
       description: "From 0 → 10K subscribers: Launch & Position",
-      subtitle: "Perfect for serious creators ready to get started with professional support.",
+      subtitle: "Perfect for serious creators ready to get started with professional support and establish a strong foundation for growth.",
       icon: <Zap className="h-6 w-6" />,
       badge: "Most Popular",
       badgeVariant: "default" as const,
@@ -31,17 +32,17 @@ export const Pricing = () => {
         "Monthly growth report + clear next steps"
       ],
       highlights: [
-        "You record. We handle editing, posting, thumbnails, channel visuals, and growth.",
-        "No revisions — we manage every detail from start to finish."
+        "You record. We handle editing, posting, thumbnails, channel visuals, and growth. No revisions — we manage every detail from start to finish."
       ]
     },
     {
       id: "autopilot",
       name: "Autopilot",
+      subtitle_name: "General Niche Content",
       price: "$1,800",
       period: "/month",
       description: "General Niche: Complete Hands-Off Content",
-      subtitle: "Perfect for entrepreneurs who want a fully automated content machine.",
+      subtitle: "The ultimate solution for entrepreneurs who demand a fully automated, high-performing content machine without lifting a finger.",
       icon: <Rocket className="h-6 w-6" />,
       badge: "Premium",
       badgeVariant: "secondary" as const,
@@ -55,17 +56,17 @@ export const Pricing = () => {
         "Monthly performance analytics & optimization reports"
       ],
       highlights: [
-        "You do nothing. We handle everything—scripting, voiceover, editing, posting, and growth.",
-        "Perfect for building passive income channels with zero effort required from you."
+        "You do nothing. We handle everything—scripting, voiceover, editing, posting, and growth. Perfect for building passive income channels with zero effort required from you."
       ]
     },
     {
       id: "growth",
       name: "Growth",
+      subtitle_name: "The Accelerator",
       price: "$2,800",
       period: "/month",
       description: "From 10K → 50K subscribers: Build & Expand",
-      subtitle: "Your channel is gaining traction — now let's step it up aggressively.",
+      subtitle: "Your channel is gaining significant traction — now let's step it up aggressively with advanced strategies and dedicated support.",
       icon: <Star className="h-6 w-6" />,
       badge: "Best Value",
       badgeVariant: "secondary" as const,
@@ -83,13 +84,13 @@ export const Pricing = () => {
       ]
     },
     {
-      id: "pro",
+      id: "elite",
       name: "Elite",
-      subtitle_name: "(Full Scale)",
+      subtitle_name: "The Empire",
       price: "$5,000",
       period: "/month",
       description: "From 50K → 100K+ subscribers: Lead & Monetize",
-      subtitle: "You're ready to build an empire. We become your full-time creative partner.",
+      subtitle: "You're ready to build an empire. We become your full-time creative partner, handling every aspect of your channel's growth and monetization.",
       icon: <Crown className="h-6 w-6" />,
       badge: "Celebrity",
       badgeVariant: "destructive" as const,
@@ -116,7 +117,7 @@ export const Pricing = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 mb-6">
             <Rocket className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium">Choose Your Growth Path</span>
+            <span className="text-sm font-medium">Elite Growth Packages</span>
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -252,8 +253,8 @@ export const Pricing = () => {
               Ready to Transform Your Channel?
             </h3>
             <p className="text-muted-foreground mb-8">
-              Join 100+ creators who have scaled their channels with our proven system. 
-              Let's discuss which package is perfect for your goals.
+              Join the ranks of successful creators who have scaled their channels with VidPace. 
+              It's time to stop dreaming and start dominating.
             </p>
             <Button 
               variant="hero" 
@@ -262,7 +263,7 @@ export const Pricing = () => {
               className="group"
             >
               <Star className="h-5 w-5 group-hover:scale-110 transition-transform" />
-              Schedule Your Strategy Call
+              Schedule Your Strategy Call Today!
             </Button>
           </div>
         </div>
