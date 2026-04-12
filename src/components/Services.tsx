@@ -16,11 +16,6 @@ import {
 export const Services = () => {
   const servicesWeProvide = [
   {
-    icon: Megaphone,
-    title: "Social Media Ads",
-    description: "Strategic advertising campaigns to boost your reach and engagement"
-  },
-  {
     icon: Users,
     title: "Youtube Channel Management",
     description: "Complete content strategy and daily management"
@@ -43,6 +38,7 @@ export const Services = () => {
 ]
 
 const servicesWeDontProvide = [
+  "Social media ads",
   "Videography",
   "Generic content templates",
   "One-size-fits-all solutions", 
