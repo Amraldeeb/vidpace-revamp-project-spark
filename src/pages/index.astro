@@ -6,29 +6,52 @@ import Faq from "../components/Faq.astro";
 import AuditForm from "../components/AuditForm.astro";
 import { site, faqs, niches } from "../data/site";
 
-const services = [
-  { icon: "scissors", t: "Editing", d: "Pacing, cuts, b-roll, sound, captions and colour. Your style, kept consistent from video to video." },
-  { icon: "image", t: "Thumbnails", d: "Two options for every video, designed to read clearly on a phone screen." },
-  { icon: "search", t: "Titles and SEO", d: "Titles, descriptions, chapters and tags built from what your viewers actually search." },
-  { icon: "phone", t: "Shorts", d: "The best moments from each long video, cut vertical with hooks and captions." },
-  { icon: "calendar", t: "Posting", d: "Uploaded and scheduled for you, with end screens, cards and playlists set." },
-  { icon: "chart", t: "Monthly report", d: "What worked, what didn't, and next month's topics, in one page and a short call." },
+// A weekly creator's week, before and after. Illustrative hours, labelled as such on the page.
+const before = [
+  { d: "Mon", t: "Film the episode", h: 3 },
+  { d: "Tue", t: "Rough cut", h: 5 },
+  { d: "Wed", t: "Fix audio, finish cut", h: 4 },
+  { d: "Thu", t: "Thumbnail, title, upload", h: 3 },
+  { d: "Fri", t: "Cut Shorts from the episode", h: 3 },
+  { d: "Sat", t: "Re-export, captions", h: 2 },
+  { d: "Sun", t: "Plan next week", h: 1 },
 ];
-const steps = [
-  { t: "Free audit", tc: "Day 0", d: "A 10-minute recorded review of your channel with the first three fixes." },
-  { t: "Kickoff call", tc: "Day 2", d: "30 minutes to set your style, topics and upload calendar. Your shared folder goes live." },
-  { t: "Weekly pipeline", tc: "Every week", d: "Upload raw footage. Get the edit, thumbnails and title within 72 hours." },
-  { t: "Monthly review", tc: "Every month", d: "We report results and adjust topics, packaging and schedule." },
+const after = [
+  { d: "Mon", t: "Film the episode", h: 3 },
+  { d: "Tue", t: "Drop files in the shared folder", h: 0.2 },
+  { d: "Wed", t: "", h: 0 },
+  { d: "Thu", t: "Watch the cut, leave notes", h: 0.5 },
+  { d: "Fri", t: "Pick thumbnail A or B", h: 0.2 },
+  { d: "Sat", t: "", h: 0 },
+  { d: "Sun", t: "Plan next week with our topic list", h: 0.5 },
+];
+const sum = (a: { h: number }[]) => a.reduce((s, x) => s + x.h, 0);
+const maxH = 5;
+
+const files = [
+  { n: "EP43_final_4K.mp4", m: "2.8 GB", s: "Ready" },
+  { n: "EP43_thumb_A.png", m: "1.2 MB", s: "Pick one" },
+  { n: "EP43_thumb_B.png", m: "1.1 MB", s: "Pick one" },
+  { n: "EP43_titles.txt", m: "3 options", s: "Pick one" },
+  { n: "EP43_description_chapters.txt", m: "2 KB", s: "Ready" },
+  { n: "EP43_short_01_hook.mp4", m: "38 s", s: "Scheduled Fri" },
+  { n: "EP43_short_02.mp4", m: "44 s", s: "Scheduled Sat" },
+  { n: "EP43_short_03.mp4", m: "29 s", s: "Scheduled Sun" },
+];
+const timeline = [
+  { at: "Day 0", t: "Free audit", d: "A recorded 10-minute review of your channel, with the first three things we'd change." },
+  { at: "Day 2", t: "Kickoff call", d: "Thirty minutes on your style, your topics and your upload days. Your shared folder goes live after the call." },
+  { at: "Week 1", t: "First video ships", d: "You upload raw footage, and the cut, thumbnails and title come back within 72 hours." },
+  { at: "Month 1", t: "First review", d: "One page on what worked and what didn't, then we agree next month's topics." },
 ];
 const standard = [
-  { t: "A hook in the first five seconds", d: "No slow intros. Every video opens on its strongest moment." },
-  { t: "Captions synced to the words", d: "Burned into Shorts, uploaded as subtitles on long videos." },
-  { t: "No dead air", d: "Pauses, repeats and filler trimmed so the pace holds." },
-  { t: "Thumbnail checked at phone size", d: "Text readable at the size most viewers see it." },
-  { t: "Title written from search data", d: "Matched to what people type, not to what we guess." },
-  { t: "A clear next step", d: "End screens and calls to action that point to your next video or offer." },
+  { t: "The strongest moment comes first", d: "Long intros get cut. The video opens on its best line." },
+  { t: "Captions match the words", d: "Burned into Shorts and uploaded as subtitles on long videos." },
+  { t: "No dead air", d: "We trim pauses, repeats and filler so the pace holds." },
+  { t: "Thumbnails checked at phone size", d: "If the text can't be read on a phone, it gets redone." },
+  { t: "Titles come from search data", d: "We look at what your viewers type before we write a word." },
+  { t: "Every video points somewhere", d: "End screens and cards lead to your next video or your offer." },
 ];
-const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "real-estate": "home" };
 ---
 <Base title="YouTube editing and channel management" faqs={faqs}
   service={{ name: "YouTube editing and channel management", description: site.description, price: 900 }}>
@@ -39,7 +62,7 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
       <div>
         <span class="eyebrow rise">YouTube post-production team</span>
         <h1 class="display h1 rise d1" id="hero-h" style="margin-top:18px">You make the videos. <span class="red">We run the channel.</span></h1>
-        <p class="lede rise d2">Editing, thumbnails, titles and posting for creators, podcasters and experts. One team, a weekly schedule, one monthly price.</p>
+        <p class="lede rise d2">We edit your videos, design the thumbnails, write the titles and post on schedule. You film, approve, and get your evenings back.</p>
         <div class="btn-row rise d3">
           <a class="btn btn-red" href="#audit">Get a free channel audit <Icon name="arrow" /></a>
           <a class="btn btn-ghost" href="/pricing">See pricing</a>
@@ -47,7 +70,7 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
         <ul class="assure rise d3">
           <li><Icon name="check" />{site.terms.contract}</li>
           <li><Icon name="check" />{site.terms.firstEdit}</li>
-          <li><Icon name="check" />{site.terms.ownership}</li>
+          <li><Icon name="check" />{site.terms.revisions}</li>
         </ul>
       </div>
 
@@ -76,47 +99,123 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
     <div class="wrap"><ul><li>Editing</li><li>Thumbnails</li><li>Titles and SEO</li><li>Shorts</li><li>Posting</li><li>Reporting</li></ul></div>
   </div>
 
-  <section class="section" aria-labelledby="problem-h">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">The problem</span>
-        <h2 class="display h2" id="problem-h">Uploading every week is a second job</h2>
-        <p class="lede">Filming is the part you're good at. Editing, packaging and posting are what decide whether anyone watches, and they eat the week. We take all of it.</p>
+  <section class="section" aria-labelledby="week-h">
+    <div class="wrap split">
+      <div class="head" style="margin:0">
+        <span class="eyebrow">Your week</span>
+        <h2 class="display h2" id="week-h">Uploading every week is a second job</h2>
+        <p class="lede">Most solo creators we talk to spend more time editing than filming. Here's what one episode a week looks like with and without us.</p>
+        <p class="fine">Hours are a typical example for one long video and three Shorts a week. Yours will differ.</p>
       </div>
-      <div class="grid g3">
-        <div class="card"><h3 class="h3">Before VidPace</h3><p>Evenings in the editor. Thumbnails made at midnight. Uploads slip from weekly to "when I can".</p></div>
-        <div class="card"><h3 class="h3">With VidPace</h3><p>Record, upload to one folder, approve. Edits, thumbnails and titles come back within 72 hours.</p></div>
-        <div class="card"><h3 class="h3">What you get back</h3><p>A steady upload schedule, packaging built to be clicked, and your time spent on content and clients.</p></div>
+      <div class="weeks">
+        {[["Doing it yourself", before], ["With VidPace", after]].map(([label, rows], k) => (
+          <div class={`week${k ? " is-after" : ""}`}>
+            <div class="week-head"><b>{label as string}</b><span class="week-total">{sum(rows as typeof before)} h</span></div>
+            <ul>
+              {(rows as typeof before).map((r) => (
+                <li>
+                  <span class="day">{r.d}</span>
+                  <span class="task">{r.t || <span class="muted">Free</span>}</span>
+                  <span class="hbar" aria-hidden="true"><i style={`width:${(r.h / maxH) * 100}%`}></i></span>
+                  <span class="hrs">{r.h ? (r.h < 1 ? `${Math.round(r.h * 60)} min` : `${r.h} h`) : ""}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section" id="services" aria-labelledby="services-h">
+    <div class="wrap split rev">
+      <div class="drive" aria-label="Example of a weekly delivery folder">
+        <div class="drive-top"><Icon name="file" /><span>VidPace / Your Channel / <b>Ep 43</b></span><span class="drive-n">8 files</span></div>
+        <ul>
+          {files.map((f) => (
+            <li>
+              <span class={`ftype ${f.n.endsWith(".mp4") ? "vid" : f.n.endsWith(".png") ? "img" : "txt"}`} aria-hidden="true">{f.n.split(".").pop()}</span>
+              <span class="fname">{f.n}</span>
+              <span class="fmeta">{f.m}</span>
+              <span class={`fstat${f.s === "Pick one" ? " pick" : f.s === "Ready" ? " ready" : ""}`}>{f.s}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="head" style="margin-bottom:24px">
+          <span class="eyebrow">What you get</span>
+          <h2 class="display h2" id="services-h">One folder, every week</h2>
+          <p class="lede">Each episode comes back as a finished set. You make two choices, the thumbnail and the title, and we do the rest.</p>
+        </div>
+        <dl class="deliver">
+          <div><dt>Editing</dt><dd>Cuts, pacing, b-roll, sound clean-up, colour and captions, in a style that stays the same from video to video.</dd></div>
+          <div><dt>Packaging</dt><dd>Two thumbnail options and three title options, plus a description with chapters.</dd></div>
+          <div><dt>Shorts</dt><dd>The best moments, cut vertical with a hook in the first second.</dd></div>
+          <div><dt>Posting</dt><dd>We upload, schedule, and set end screens, cards and playlists.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pack-h">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">What we handle</span><h2 class="display h2" id="services-h">Everything after you hit stop</h2></div>
-      <div class="grid g3">
-        {services.map((s) => (<div class="card"><span class="icon"><Icon name={s.icon} /></span><h3 class="h3">{s.t}</h3><p>{s.d}</p></div>))}
+      <div class="head">
+        <span class="eyebrow">Packaging</span>
+        <h2 class="display h2" id="pack-h">The thumbnail and title decide if anyone watches</h2>
+        <p class="lede">Here's the kind of rewrite we do on day one. Switch between the two versions.</p>
+      </div>
+      <div class="pack" data-pack data-state="after">
+        <div class="pack-toggle" role="group" aria-label="Show version">
+          <button type="button" data-set="before" aria-pressed="false">Before</button>
+          <button type="button" data-set="after" aria-pressed="true">After</button>
+        </div>
+        <div class="pack-body">
+          <div class="yt">
+            <div class="yt-thumb">
+              <div class="v-before" aria-hidden="true"><span class="tb-small">EPISODE 112 - Full conversation with our guest about pricing, offers and getting your first clients online!!</span><span class="tb-logo">PODCAST</span></div>
+              <div class="v-after" aria-hidden="true"><b>You're <span>under</span>charging</b><span class="face"></span></div>
+              <span class="yt-dur">48:12</span>
+            </div>
+            <div class="yt-meta">
+              <span class="yt-av" aria-hidden="true"></span>
+              <div>
+                <p class="yt-title"><span class="v-before">Episode 112 | Full Conversation</span><span class="v-after">Why your first coaching offer is priced too low</span></p>
+                <p class="yt-sub">Your Channel</p>
+              </div>
+            </div>
+          </div>
+          <ul class="pack-notes">
+            <li class="v-before"><b>Thumbnail</b> Thirteen words at small size. Nothing readable on a phone.</li>
+            <li class="v-before"><b>Title</b> An episode number tells a new viewer nothing.</li>
+            <li class="v-before"><b>Result</b> Only existing subscribers click.</li>
+            <li class="v-after"><b>Thumbnail</b> Three words, one face, one colour. Readable at phone size.</li>
+            <li class="v-after"><b>Title</b> Built around a problem people search for, written as a claim.</li>
+            <li class="v-after"><b>Title options</b> We send two more, and you pick one.</li>
+          </ul>
+        </div>
+        <p class="fine">Illustration made for this page. Not a client's channel.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="how" aria-labelledby="how-h">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">How it works</span><h2 class="display h2" id="how-h">From raw footage to published in a week</h2></div>
-      <ol class="grid g4 steps" style="list-style:none;padding:0;margin:0">
-        {steps.map((s) => (<li class="card step"><span class="tc">{s.tc}</span><h3 class="h3">{s.t}</h3><p>{s.d}</p></li>))}
+      <div class="head"><span class="eyebrow">How it starts</span><h2 class="display h2" id="how-h">From first call to first upload in about a week</h2></div>
+      <ol class="ruler">
+        {timeline.map((s) => (<li><span class="mark">{s.at}</span><h3 class="h3">{s.t}</h3><p>{s.d}</p></li>))}
       </ol>
     </div>
   </section>
 
   <section class="section" aria-labelledby="std-h">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">The VidPace standard</span>
-        <h2 class="display h2" id="std-h">Six checks on every video before it ships</h2>
-        <p class="lede">We'd rather show you how we work than quote numbers we can't prove. Every edit passes this list.</p>
+    <div class="wrap split">
+      <div class="head" style="margin:0">
+        <span class="eyebrow">Our checklist</span>
+        <h2 class="display h2" id="std-h">Six checks before any video ships</h2>
+        <p class="lede">An editor goes through this list on every video, long or short, before it reaches your folder.</p>
       </div>
-      <ul class="checks">
+      <ul class="checks one">
         {standard.map((s) => (<li><Icon name="check" /><div><b>{s.t}</b><span>{s.d}</span></div></li>))}
       </ul>
     </div>
@@ -124,21 +223,35 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
 
   <section class="section" aria-labelledby="who-h">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Who we work with</span><h2 class="display h2" id="who-h">Built for people with more to say than time to edit</h2></div>
-      <div class="grid g4">
+      <div class="head"><span class="eyebrow">Who we work with</span><h2 class="display h2" id="who-h">For people with more to say than time to edit</h2></div>
+      <ul class="index">
         {niches.map((n) => (
-          <a class="card" href={`/youtube-editing-for/${n.slug}`}>
-            <span class="icon"><Icon name={nicheIcon[n.slug]} /></span>
-            <h3 class="h3">{n.name}</h3><p>{n.lede.split(". ")[0]}.</p>
-            <span class="more">See how <Icon name="arrow" /></span>
-          </a>
+          <li><a href={`/youtube-editing-for/${n.slug}`}>
+            <span class="ix-name">{n.name}</span>
+            <span class="ix-desc">{n.h1}</span>
+            <span class="ix-go"><Icon name="arrow" /></span>
+          </a></li>
         ))}
-        <a class="card" href="/faceless-youtube-channels">
-          <span class="icon"><Icon name="ghost" /></span>
-          <h3 class="h3">Faceless channels</h3><p>We research, script, narrate and edit original videos for a channel you own.</p>
-          <span class="more">See how <Icon name="arrow" /></span>
-        </a>
-      </div>
+        <li><a href="/faceless-youtube-channels">
+          <span class="ix-name">Faceless channels</span>
+          <span class="ix-desc">Original, researched videos for a channel you own</span>
+          <span class="ix-go"><Icon name="arrow" /></span>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="note-h">
+    <div class="wrap">
+      <figure class="note-card">
+        <span class="eyebrow">A note from the team</span>
+        <h2 class="display h2" id="note-h" style="margin-top:14px">Why we started VidPace</h2>
+        <blockquote>
+          <p>We kept meeting creators with good ideas and dead channels. They weren't short on talent. They were short on hours, and editing ate all of them.</p>
+          <p>So we set up the team we wished they had: editors, a thumbnail designer and someone who reads the analytics, all working to one weekly schedule. You stay the voice of the channel. We make sure it goes out on time and looks like it belongs on the front page.</p>
+        </blockquote>
+        <figcaption><span class="sig" translate="no">The VidPace team</span><a class="btn btn-ghost" href="/book">Book a call with us</a></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -146,8 +259,8 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">Pricing</span>
-        <h2 class="display h2" id="pricing-h">One monthly price. No setup fee.</h2>
-        <p class="lede">Every plan includes editing, thumbnails, titles, descriptions, posting and a monthly report.</p>
+        <h2 class="display h2" id="pricing-h">One monthly price, no setup fee</h2>
+        <p class="lede">Every plan covers editing, thumbnails, titles, descriptions, posting and a monthly report.</p>
       </div>
       <Plans />
     </div>
@@ -156,3 +269,14 @@ const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "
   <Faq items={faqs} />
   <AuditForm source="home" />
 </Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-pack]").forEach((el) => {
+    el.querySelectorAll<HTMLButtonElement>("[data-set]").forEach((b) =>
+      b.addEventListener("click", () => {
+        el.dataset.state = b.dataset.set!;
+        el.querySelectorAll("[data-set]").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+      }),
+    );
+  });
+</script>

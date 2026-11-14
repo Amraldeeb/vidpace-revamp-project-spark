@@ -15,7 +15,7 @@ const steps = [
 const rules = [
   { t: "Original every time", d: "No reused clips, no spun scripts, no copied channels." },
   { t: "Edited by people", d: "An editor cuts and checks every video before it goes out." },
-  { t: "Made for YouTube's rules", d: "YouTube doesn't pay for mass-produced or repetitive content. We build for the monetisation rules, not around them." },
+  { t: "Made for YouTube's rules", d: "YouTube doesn't pay for mass-produced or repetitive content, so we plan every series against its monetisation policy." },
   { t: "Yours to keep", d: "The channel, scripts and files belong to you. You approve every topic." },
 ];
 const ff = faqs.filter((f) => /faceless|own|cancel/i.test(f.q));
@@ -39,7 +39,7 @@ const ff = faqs.filter((f) => /faceless|own|cancel/i.test(f.q));
   </section>
   <section class="section">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Our rules</span><h2 class="display h2">Not a content farm</h2><p class="lede">Channels built on recycled content get demonetised. Ours are built to keep earning.</p></div>
+      <div class="head"><span class="eyebrow">Our rules</span><h2 class="display h2">How we keep it monetisable</h2><p class="lede">YouTube stops paying channels that recycle clips and scripts. Every video we make for you starts from fresh research.</p></div>
       <ul class="checks">{rules.map((r) => <li><Icon name="check" /><div><b>{r.t}</b><span>{r.d}</span></div></li>)}</ul>
     </div>
   </section>
