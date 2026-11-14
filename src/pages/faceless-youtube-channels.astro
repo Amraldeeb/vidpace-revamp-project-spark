@@ -1,0 +1,49 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import Plans from "../components/Plans.astro";
+import Faq from "../components/Faq.astro";
+import AuditForm from "../components/AuditForm.astro";
+import { faqs } from "../data/site";
+
+const steps = [
+  { t: "Pick the niche", d: "We look at demand and competition and agree a topic area with you." },
+  { t: "Research and script", d: "Every video gets its own research and an original script. No templates." },
+  { t: "Narrate and edit", d: "Professional or licensed AI narration, then a full human edit with visuals and sound." },
+  { t: "Package and post", d: "Thumbnail, title and description, then scheduled uploads and Shorts." },
+];
+const rules = [
+  { t: "Original every time", d: "No reused clips, no spun scripts, no copied channels." },
+  { t: "Edited by people", d: "An editor cuts and checks every video before it goes out." },
+  { t: "Made for YouTube's rules", d: "YouTube doesn't pay for mass-produced or repetitive content. We build for the monetisation rules, not around them." },
+  { t: "Yours to keep", d: "The channel, scripts and files belong to you. You approve every topic." },
+];
+const ff = faqs.filter((f) => /faceless|own|cancel/i.test(f.q));
+---
+<Base title="Faceless YouTube channels" description="VidPace builds faceless YouTube channels with original research, scripts, narration and human editing. You own the channel and approve every topic. From $1,800 a month."
+  faqs={ff} service={{ name: "Faceless YouTube channel production", description: "Original, human-edited faceless YouTube videos: research, scripts, narration, editing and posting.", price: 1800 }}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Home</a> / Faceless channels</p>
+      <span class="eyebrow">Autopilot plan</span>
+      <h1 class="display h1" style="margin-top:14px">A faceless channel, <span class="red">built to last</span></h1>
+      <p class="lede">We research, script, narrate and edit original videos for a channel you own. You approve the topics. We do the rest, every week.</p>
+      <div class="btn-row" style="margin-top:28px"><a class="btn btn-red" href="#audit">Talk about your niche <Icon name="arrow" /></a><a class="btn btn-ghost" href="/pricing">Compare plans</a></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">How we build it</span><h2 class="display h2">Four steps, every video</h2></div>
+      <ol class="grid g4 steps" style="list-style:none;padding:0;margin:0">{steps.map((s) => <li class="card step"><h3 class="h3">{s.t}</h3><p>{s.d}</p></li>)}</ol>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Our rules</span><h2 class="display h2">Not a content farm</h2><p class="lede">Channels built on recycled content get demonetised. Ours are built to keep earning.</p></div>
+      <ul class="checks">{rules.map((r) => <li><Icon name="check" /><div><b>{r.t}</b><span>{r.d}</span></div></li>)}</ul>
+    </div>
+  </section>
+  <section class="section"><div class="wrap"><div class="head"><span class="eyebrow">Price</span><h2 class="display h2">Autopilot</h2></div><Plans only={["autopilot"]} /></div></section>
+  <Faq items={ff} />
+  <AuditForm source="faceless" heading="Tell us the niche you have in mind" />
+</Base>

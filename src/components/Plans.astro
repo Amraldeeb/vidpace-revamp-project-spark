@@ -1,0 +1,24 @@
+---
+import Icon from "./Icon.astro";
+import { plans, site, usd } from "../data/site";
+interface Props { only?: string[]; }
+const { only } = Astro.props;
+const list = only ? plans.filter((p) => only.includes(p.id)) : plans;
+---
+<div class={only ? "plans few" : "plans"}>
+  {list.map((p) => (
+    <article class={`plan${p.featured ? " featured" : ""}`} aria-labelledby={`plan-${p.id}`}>
+      <span class="tag">{p.tag}</span>
+      <h3 id={`plan-${p.id}`}>{p.name}</h3>
+      <div class="price">{usd(p.price)}<small> / month</small></div>
+      <span class="for">{p.for}</span>
+      <p class="muted" style="font-size:14.5px">{p.summary}</p>
+      <ul>{p.features.map((f) => <li><Icon name="check" /><span>{f}</span></li>)}</ul>
+      <a class={`btn ${p.featured ? "btn-red" : "btn-ghost"}`} href={`/book?plan=${p.id}`}>Choose {p.name}</a>
+    </article>
+  ))}
+</div>
+<div class="guarantee">
+  <Icon name="shield" />
+  <div><b>14-day guarantee</b><p>{site.terms.guarantee} {site.terms.contract}. {site.terms.revisions}.</p></div>
+</div>

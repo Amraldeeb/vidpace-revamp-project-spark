@@ -1,0 +1,158 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import Plans from "../components/Plans.astro";
+import Faq from "../components/Faq.astro";
+import AuditForm from "../components/AuditForm.astro";
+import { site, faqs, niches } from "../data/site";
+
+const services = [
+  { icon: "scissors", t: "Editing", d: "Pacing, cuts, b-roll, sound, captions and colour. Your style, kept consistent from video to video." },
+  { icon: "image", t: "Thumbnails", d: "Two options for every video, designed to read clearly on a phone screen." },
+  { icon: "search", t: "Titles and SEO", d: "Titles, descriptions, chapters and tags built from what your viewers actually search." },
+  { icon: "phone", t: "Shorts", d: "The best moments from each long video, cut vertical with hooks and captions." },
+  { icon: "calendar", t: "Posting", d: "Uploaded and scheduled for you, with end screens, cards and playlists set." },
+  { icon: "chart", t: "Monthly report", d: "What worked, what didn't, and next month's topics, in one page and a short call." },
+];
+const steps = [
+  { t: "Free audit", tc: "Day 0", d: "A 10-minute recorded review of your channel with the first three fixes." },
+  { t: "Kickoff call", tc: "Day 2", d: "30 minutes to set your style, topics and upload calendar. Your shared folder goes live." },
+  { t: "Weekly pipeline", tc: "Every week", d: "Upload raw footage. Get the edit, thumbnails and title within 72 hours." },
+  { t: "Monthly review", tc: "Every month", d: "We report results and adjust topics, packaging and schedule." },
+];
+const standard = [
+  { t: "A hook in the first five seconds", d: "No slow intros. Every video opens on its strongest moment." },
+  { t: "Captions synced to the words", d: "Burned into Shorts, uploaded as subtitles on long videos." },
+  { t: "No dead air", d: "Pauses, repeats and filler trimmed so the pace holds." },
+  { t: "Thumbnail checked at phone size", d: "Text readable at the size most viewers see it." },
+  { t: "Title written from search data", d: "Matched to what people type, not to what we guess." },
+  { t: "A clear next step", d: "End screens and calls to action that point to your next video or offer." },
+];
+const nicheIcon: Record<string, string> = { podcasts: "mic", coaches: "users", "real-estate": "home" };
+---
+<Base title="YouTube editing and channel management" faqs={faqs}
+  service={{ name: "YouTube editing and channel management", description: site.description, price: 900 }}>
+
+  <section class="hero" aria-labelledby="hero-h">
+    <svg class="pulse-bg" viewBox="0 0 800 300" aria-hidden="true"><polyline points="0,220 260,220 330,40 430,280 500,150 800,150" fill="none" stroke="#6fdcfe" stroke-width="6"/></svg>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow rise">YouTube post-production team</span>
+        <h1 class="display h1 rise d1" id="hero-h" style="margin-top:18px">You make the videos. <span class="red">We run the channel.</span></h1>
+        <p class="lede rise d2">Editing, thumbnails, titles and posting for creators, podcasters and experts. One team, a weekly schedule, one monthly price.</p>
+        <div class="btn-row rise d3">
+          <a class="btn btn-red" href="#audit">Get a free channel audit <Icon name="arrow" /></a>
+          <a class="btn btn-ghost" href="/pricing">See pricing</a>
+        </div>
+        <ul class="assure rise d3">
+          <li><Icon name="check" />{site.terms.contract}</li>
+          <li><Icon name="check" />{site.terms.firstEdit}</li>
+          <li><Icon name="check" />{site.terms.ownership}</li>
+        </ul>
+      </div>
+
+      <figure class="bay rise d2" aria-label="Illustration of a VidPace edit in progress">
+        <div class="bay-top"><span class="rec"></span>EP_43_final_v2.prproj<span class="tc">00:07:42:16</span></div>
+        <div class="viewer">
+          <div class="thumb-mock"><span class="ab">Thumbnail A</span><b>I quit <span>editing</span> my own videos</b><span class="face"></span></div>
+        </div>
+        <div class="timeline">
+          <div class="track"><span>V2</span><div class="lane"><span class="clip v2" style="left:8%;width:14%"></span><span class="clip v2" style="left:46%;width:10%"></span><span class="clip v2" style="left:74%;width:16%"></span></div></div>
+          <div class="track"><span>V1</span><div class="lane"><span class="clip v" style="left:0;width:30%"></span><span class="clip v" style="left:31%;width:22%"></span><span class="clip v" style="left:54%;width:28%"></span><span class="clip v" style="left:83%;width:17%"></span></div></div>
+          <div class="track"><span>A1</span><div class="lane"><div class="wave">{Array.from({ length: 48 }, (_, i) => <i style={`height:${20 + Math.round(Math.abs(Math.sin(i * 1.7) * 70 + Math.cos(i * 0.6) * 18))}%`}></i>)}</div></div></div>
+          <div class="track"><span>CC</span><div class="lane"><span class="clip c" style="left:2%;width:18%"></span><span class="clip c" style="left:22%;width:20%"></span><span class="clip c" style="left:44%;width:15%"></span><span class="clip c" style="left:61%;width:21%"></span><span class="clip c" style="left:84%;width:14%"></span></div></div>
+          <div class="scrub" aria-hidden="true"><span class="playhead"></span></div>
+        </div>
+        <div class="queue">
+          <div class="q"><span class="s-live">Published</span><b>Ep. 42</b></div>
+          <div class="q"><span class="s-edit">In edit</span><b>Ep. 43</b></div>
+          <div class="q"><span class="s-plan">Scheduled</span><b>3 Shorts</b></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="strip" aria-label="What we handle">
+    <div class="wrap"><ul><li>Editing</li><li>Thumbnails</li><li>Titles and SEO</li><li>Shorts</li><li>Posting</li><li>Reporting</li></ul></div>
+  </div>
+
+  <section class="section" aria-labelledby="problem-h">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">The problem</span>
+        <h2 class="display h2" id="problem-h">Uploading every week is a second job</h2>
+        <p class="lede">Filming is the part you're good at. Editing, packaging and posting are what decide whether anyone watches, and they eat the week. We take all of it.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card"><h3 class="h3">Before VidPace</h3><p>Evenings in the editor. Thumbnails made at midnight. Uploads slip from weekly to "when I can".</p></div>
+        <div class="card"><h3 class="h3">With VidPace</h3><p>Record, upload to one folder, approve. Edits, thumbnails and titles come back within 72 hours.</p></div>
+        <div class="card"><h3 class="h3">What you get back</h3><p>A steady upload schedule, packaging built to be clicked, and your time spent on content and clients.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">What we handle</span><h2 class="display h2" id="services-h">Everything after you hit stop</h2></div>
+      <div class="grid g3">
+        {services.map((s) => (<div class="card"><span class="icon"><Icon name={s.icon} /></span><h3 class="h3">{s.t}</h3><p>{s.d}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">How it works</span><h2 class="display h2" id="how-h">From raw footage to published in a week</h2></div>
+      <ol class="grid g4 steps" style="list-style:none;padding:0;margin:0">
+        {steps.map((s) => (<li class="card step"><span class="tc">{s.tc}</span><h3 class="h3">{s.t}</h3><p>{s.d}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="std-h">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">The VidPace standard</span>
+        <h2 class="display h2" id="std-h">Six checks on every video before it ships</h2>
+        <p class="lede">We'd rather show you how we work than quote numbers we can't prove. Every edit passes this list.</p>
+      </div>
+      <ul class="checks">
+        {standard.map((s) => (<li><Icon name="check" /><div><b>{s.t}</b><span>{s.d}</span></div></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="who-h">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Who we work with</span><h2 class="display h2" id="who-h">Built for people with more to say than time to edit</h2></div>
+      <div class="grid g4">
+        {niches.map((n) => (
+          <a class="card" href={`/youtube-editing-for/${n.slug}`}>
+            <span class="icon"><Icon name={nicheIcon[n.slug]} /></span>
+            <h3 class="h3">{n.name}</h3><p>{n.lede.split(". ")[0]}.</p>
+            <span class="more">See how <Icon name="arrow" /></span>
+          </a>
+        ))}
+        <a class="card" href="/faceless-youtube-channels">
+          <span class="icon"><Icon name="ghost" /></span>
+          <h3 class="h3">Faceless channels</h3><p>We research, script, narrate and edit original videos for a channel you own.</p>
+          <span class="more">See how <Icon name="arrow" /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="display h2" id="pricing-h">One monthly price. No setup fee.</h2>
+        <p class="lede">Every plan includes editing, thumbnails, titles, descriptions, posting and a monthly report.</p>
+      </div>
+      <Plans />
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <AuditForm source="home" />
+</Base>

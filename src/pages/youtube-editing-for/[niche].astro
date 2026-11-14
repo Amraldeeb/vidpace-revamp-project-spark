@@ -1,0 +1,47 @@
+---
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import Plans from "../../components/Plans.astro";
+import Faq from "../../components/Faq.astro";
+import AuditForm from "../../components/AuditForm.astro";
+import { niches, faqs, plans, type Niche } from "../../data/site";
+
+export function getStaticPaths() {
+  return niches.map((n) => ({ params: { niche: n.slug }, props: { n } }));
+}
+const { n } = Astro.props as { n: Niche };
+const plan = plans.find((p) => p.id === n.plan)!;
+const nf = faqs.slice(0, 5);
+---
+<Base title={n.title} description={`${n.lede} Plans from $${plan.price} a month.`} faqs={nf}
+  service={{ name: n.title, description: n.lede, price: plan.price }}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Home</a> / {n.name}</p>
+      <span class="eyebrow">{n.title}</span>
+      <h1 class="display h1" style="margin-top:14px">{n.h1}</h1>
+      <p class="lede">{n.lede}</p>
+      <div class="btn-row" style="margin-top:28px"><a class="btn btn-red" href="#audit">Get a free channel audit <Icon name="arrow" /></a><a class="btn btn-ghost" href="/pricing">See pricing</a></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">What changes</span><h2 class="display h2">What we fix first</h2></div>
+      <div class="grid g3">{n.pains.map((p) => <div class="card"><h3 class="h3">{p.t}</h3><p>{p.d}</p></div>)}</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Video ideas</span><h2 class="display h2">What we'll make with you</h2></div>
+      <ul class="checks">{n.ideas.map((i) => <li><Icon name="play" /><div><b>{i}</b></div></li>)}</ul>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Recommended</span><h2 class="display h2">Where most {n.name.toLowerCase()} start</h2></div>
+      <Plans only={[plan.id, plan.id === "starter" ? "growth" : "starter"]} />
+    </div>
+  </section>
+  <Faq items={nf} />
+  <AuditForm source={n.slug} />
+</Base>

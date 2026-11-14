@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import { plans } from "../data/site";
+const opts = plans.map((p) => ({ id: p.id, name: p.name, price: p.price }));
+---
+<Base title="Time and cost calculator" description="See what editing your own YouTube videos costs you in hours and money, compared with a VidPace plan.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Home</a> / Calculator</p>
+      <h1 class="display h1">What does editing cost you?</h1>
+      <p class="lede">Put a value on the hours you spend editing, designing thumbnails and uploading. Compare it with a plan. No email needed.</p>
+    </div>
+  </section>
+  <section class="section tight" style="border-top:0;padding-top:0">
+    <div class="wrap audit">
+      <form class="form" id="calc" onsubmit="return false">
+        <div class="field"><label for="hours">Hours a week on editing, thumbnails and uploads</label><input id="hours" type="number" min="0" max="80" step="0.5" value="12" inputmode="decimal" /></div>
+        <div class="field"><label for="rate">What an hour of your time is worth (USD)</label><input id="rate" type="number" min="0" step="5" value="60" inputmode="decimal" /><span class="hint">Your hourly rate, or what you'd earn on client work instead.</span></div>
+        <div class="field"><label for="plan">Plan</label>
+          <select id="plan">{opts.map((o) => <option value={o.price} selected={o.id === "starter"}>{o.name}: ${o.price.toLocaleString("en-US")} / month</option>)}</select>
+        </div>
+      </form>
+      <div class="card" aria-live="polite" style="gap:18px">
+        <div><span class="eyebrow">Every month</span></div>
+        <div><span class="muted">Your time spent</span><div class="price" id="o-hours">52 hours</div></div>
+        <div><span class="muted">Value of that time</span><div class="price" id="o-value">$3,120</div></div>
+        <div><span class="muted">Plan cost</span><div class="price" id="o-plan">$900</div></div>
+        <p id="o-verdict" style="color:var(--ink);font-weight:600"></p>
+        <p class="fine">This counts time only. It doesn't predict views or revenue, which depend on your topic and consistency.</p>
+        <a class="btn btn-red" href="/#audit">Get a free channel audit <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
+  function run() {
+    const h = Math.max(0, +$("hours").value || 0), r = Math.max(0, +$("rate").value || 0), p = +$("plan").value || 0;
+    const monthH = h * 52 / 12, value = monthH * r;
+    $("o-hours").textContent = `${Math.round(monthH)} hours`;
+    $("o-value").textContent = fmt(value);
+    $("o-plan").textContent = fmt(p);
+    const diff = value - p;
+    $("o-verdict").textContent = diff >= 0
+      ? `The plan costs ${fmt(diff)} less than the time you spend now, and you get ${Math.round(monthH)} hours back.`
+      : `The plan costs ${fmt(-diff)} more than your time is worth on paper. It may still pay off if the hours go into content or clients.`;
+  }
+  ["hours", "rate", "plan"].forEach((id) => $(id).addEventListener("input", run));
+  run();
+</script>

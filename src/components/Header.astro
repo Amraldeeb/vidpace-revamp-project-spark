@@ -1,0 +1,46 @@
+---
+import Icon from "./Icon.astro";
+const links = [
+  { href: "/#how", label: "How it works" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/faceless-youtube-channels", label: "Faceless channels" },
+  { href: "/youtube-editing-for/podcasts", label: "Podcasts" },
+  { href: "/#faq", label: "FAQ" },
+];
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="VidPace home">
+      <img src="/logo-480.png" alt="VidPace" width="78" height="40" fetchpriority="high" translate="no" />
+    </a>
+    <nav class="nav" aria-label="Main">
+      {links.map((l) => <a href={l.href} aria-current={path === l.href ? "page" : undefined}>{l.label}</a>)}
+    </nav>
+    <a class="btn btn-red header-cta" href="/#audit">Free channel audit</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <span class="i-open"><Icon name="menu" /></span>
+      <span class="i-close" hidden><Icon name="close" /></span>
+    </button>
+  </div>
+  <div class="wrap mobile-menu" id="mobile-menu" data-open="false">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a class="btn btn-red" href="/#audit">Get a free channel audit</a>
+  </div>
+</header>
+<script>
+  const btn = document.querySelector<HTMLButtonElement>(".menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  if (btn && menu) {
+    const set = (open: boolean) => {
+      menu.dataset.open = String(open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      btn.querySelector<HTMLElement>(".i-open")!.hidden = open;
+      btn.querySelector<HTMLElement>(".i-close")!.hidden = !open;
+    };
+    btn.addEventListener("click", () => set(menu.dataset.open !== "true"));
+    menu.addEventListener("click", (e) => { if ((e.target as HTMLElement).closest("a")) set(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.dataset.open === "true") { set(false); btn.focus(); } });
+  }
+</script>

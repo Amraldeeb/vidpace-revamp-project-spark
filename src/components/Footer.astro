@@ -1,0 +1,39 @@
+---
+import { site, niches } from "../data/site";
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="/logo-480.png" alt="VidPace" width="94" height="48" loading="lazy" />
+        <p class="muted" style="margin-top:14px;max-width:34ch">YouTube editing, thumbnails, titles and posting, run by one team on a weekly schedule.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/faceless-youtube-channels">Faceless channels</a></li>
+          <li><a href="/roi-calculator">Time and cost calculator</a></li>
+          <li><a href="/book">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Who it's for</h4>
+        <ul>
+          {niches.map((n) => <li><a href={`/youtube-editing-for/${n.slug}`}>{n.name}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          {site.socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© {year} VidPace. YouTube post-production and channel management.</span>
+      <a href="/privacy">Privacy</a>
+    </div>
+  </div>
+</footer>

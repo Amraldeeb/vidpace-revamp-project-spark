@@ -1,0 +1,117 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+interface Props { heading?: string; source?: string; }
+const { heading = "Get a free 10-minute channel audit", source = "home" } = Astro.props;
+---
+<section class="section" id="audit" aria-labelledby="audit-h">
+  <div class="wrap audit">
+    <div>
+      <span class="eyebrow">Free, no call needed</span>
+      <h2 class="display h2" id="audit-h" style="margin-top:14px">{heading}</h2>
+      <p class="lede" style="margin-top:16px">Send your channel link. Within two working days you get a recorded video review of your channel. Keep it either way.</p>
+      <ul class="audit-list">
+        <li><Icon name="check" /><span>What's holding your clicks back: thumbnails and titles</span></li>
+        <li><Icon name="check" /><span>Where viewers drop off in your recent videos</span></li>
+        <li><Icon name="check" /><span>The three changes we'd make first</span></li>
+      </ul>
+    </div>
+    <form class="form" data-audit data-source={source} novalidate
+      data-service={site.emailjs.service} data-template={site.emailjs.template} data-key={site.emailjs.publicKey}>
+      <div class="row2">
+        <div class="field">
+          <label for={`name-${source}`}>Name</label>
+          <input id={`name-${source}`} name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for={`email-${source}`}>Email</label>
+          <input id={`email-${source}`} name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for={`channel-${source}`}>YouTube channel link</label>
+        <input id={`channel-${source}`} name="channel" inputmode="url" autocomplete="url" spellcheck="false" placeholder="youtube.com/@yourchannel" required />
+        <span class="hint">No channel yet? Write "none" and tell us your plan below.</span>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for={`stage-${source}`}>Subscribers</label>
+          <select id={`stage-${source}`} name="stage">
+            <option>Under 1K</option><option>1K to 10K</option><option>10K to 50K</option><option>50K and up</option><option>No channel yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for={`goal-${source}`}>Main goal</label>
+          <select id={`goal-${source}`} name="goal">
+            <option>Get more views</option><option>Save editing time</option><option>Win clients from YouTube</option><option>Start a faceless channel</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for={`note-${source}`}>Anything we should know? <span class="muted">(optional)</span></label>
+        <textarea id={`note-${source}`} name="note" rows="3"></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for={`company-${source}`}>Company</label>
+        <input id={`company-${source}`} name="company" tabindex="-1" autocomplete="off" />
+      </div>
+      <button class="btn btn-red" type="submit">Request my audit <Icon name="arrow" /></button>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
+      <p class="fine">We use your details only to send your audit and follow up. See our <a href="/privacy">privacy note</a>.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form[data-audit]").forEach((form) => {
+    const status = form.querySelector<HTMLElement>(".form-status")!;
+    const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    const show = (msg: string, ok: boolean) => { status.hidden = false; status.textContent = msg; status.className = "form-status " + (ok ? "ok" : "bad"); };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      if ((d.get("company") as string)?.trim()) return; // bot filled the hidden field
+      const bad = ["name", "email", "channel"].find((k) => !(d.get(k) as string)?.trim());
+      const email = (d.get("email") as string) || "";
+      if (bad || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        show(bad ? "Please fill in your name, email and channel link." : "Please enter a valid email address.", false);
+        form.querySelector<HTMLInputElement>(`[name=${bad || "email"}]`)?.focus();
+        return;
+      }
+      const params = new URLSearchParams(location.search);
+      const message = [
+        `Audit request (${form.dataset.source})`,
+        `Channel: ${d.get("channel")}`,
+        `Subscribers: ${d.get("stage")}`,
+        `Goal: ${d.get("goal")}`,
+        `Note: ${d.get("note") || "-"}`,
+        `Source: ${params.get("utm_source") || document.referrer || "direct"} / ${params.get("utm_campaign") || "-"}`,
+        `Page: ${location.pathname}`,
+      ].join("\n");
+
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      try {
+        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            service_id: form.dataset.service,
+            template_id: form.dataset.template,
+            user_id: form.dataset.key,
+            template_params: { from_name: d.get("name"), from_email: email, message },
+          }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show("Got it. Your audit video arrives in your inbox within two working days.", true);
+      } catch {
+        show("That didn't send. Please try again, or book a call instead at vidpace.com/book.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Request my audit";
+      }
+    });
+  });
+</script>

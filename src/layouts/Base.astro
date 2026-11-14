@@ -1,0 +1,98 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  faqs?: { q: string; a: string }[];
+  service?: { name: string; description: string; price?: number };
+}
+const { title, description = site.description, image = "/og.png", faqs, service } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).toString();
+const fullTitle = Astro.url.pathname === "/" ? `${site.name} | YouTube editing and channel management` : `${title} | ${site.name}`;
+
+const org = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/icon-512.png`,
+  image: `${site.url}/og.png`,
+  description: site.description,
+  areaServed: "Worldwide",
+  sameAs: site.socials.map((s) => s.href),
+};
+const ld: object[] = [org];
+if (service) {
+  ld.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    provider: { "@type": "Organization", name: site.name, url: site.url },
+    ...(service.price ? { offers: { "@type": "Offer", price: service.price, priceCurrency: "USD" } } : {}),
+  });
+}
+if (faqs?.length) {
+  ld.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  });
+}
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0b0a0a" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, site.url).toString()} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Vidpace" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <!-- Old links like vidpace.com/#/pricing land on the new pages. -->
+    <script is:inline>
+      (function () {
+        var h = location.hash;
+        if (h.indexOf("#/") === 0) {
+          var map = { "/pricing": "/pricing", "/roi-calculator": "/roi-calculator", "/schedule": "/book", "/contact": "/#audit" };
+          var p = h.slice(1).split("?")[0];
+          location.replace(map[p] || "/");
+        }
+      })();
+    </script>
+    <!-- Vercel Web Analytics and Speed Insights (enable both in the Vercel project). -->
+    <script is:inline defer src="/_vercel/insights/script.js"></script>
+    <script is:inline defer src="/_vercel/speed-insights/script.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

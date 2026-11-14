@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import Plans from "../components/Plans.astro";
+import Faq from "../components/Faq.astro";
+import AuditForm from "../components/AuditForm.astro";
+import { faqs } from "../data/site";
+
+const rows: [string, ...(string | boolean)[]][] = [
+  ["Long-form videos / month", "–", "4", "12", "8", "16+"],
+  ["Shorts / month", "12", "4", "8", "10", "12+"],
+  ["Thumbnails", "–", true, true, true, true],
+  ["Titles, descriptions, chapters", true, true, true, true, true],
+  ["Posting and scheduling", true, true, true, true, true],
+  ["Scripts and narration", false, false, true, false, false],
+  ["Thumbnail A/B testing", false, false, false, true, true],
+  ["Community management", false, false, false, true, true],
+  ["Strategy calls", false, false, false, "Bi-weekly", "Weekly"],
+  ["Account manager", false, false, false, false, true],
+  ["Monthly report", true, true, true, true, true],
+];
+const pricingFaqs = faqs.filter((f) => /cancel|guarantee|own|fast/i.test(f.q));
+---
+<Base title="Pricing" description="VidPace plans from $350 to $5,000 a month: YouTube editing, Shorts, thumbnails, titles, posting and reporting. Month to month, no setup fee." faqs={pricingFaqs}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Home</a> / Pricing</p>
+      <h1 class="display h1">Pricing</h1>
+      <p class="lede">Pick the plan that matches your output today. Move up or down any month.</p>
+    </div>
+  </section>
+  <section class="section tight" style="border-top:0;padding-top:0">
+    <div class="wrap"><Plans /></div>
+  </section>
+  <section class="section" aria-labelledby="cmp-h">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Compare</span><h2 class="display h2" id="cmp-h">What each plan includes</h2></div>
+      <div class="tbl" role="region" aria-labelledby="cmp-h" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Included</th><th scope="col">Shorts Sprint</th><th scope="col">Starter</th><th scope="col">Autopilot</th><th scope="col">Growth</th><th scope="col">Elite</th></tr></thead>
+          <tbody>
+            {rows.map(([label, ...cells]) => (
+              <tr><th scope="row" style="text-transform:none;font:500 14.5px var(--body);color:var(--ink);background:none">{label}</th>
+                {cells.map((c) => <td>{c === true ? <span class="yes">Yes</span> : c === false ? <span class="no">—</span> : c}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <Faq items={pricingFaqs} heading="Before you choose" />
+  <AuditForm source="pricing" heading="Not sure which plan? Start with a free audit" />
+</Base>
