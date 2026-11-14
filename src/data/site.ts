@@ -17,7 +17,7 @@ export const site = {
     firstEdit: "First edit in 72 hours",
     contract: "Month to month",
     ownership: "You own every file",
-    revisions: "Two revision rounds per video",
+    revisions: "Unlimited revisions on every video",
     guarantee:
       "If you're not happy with your first edits within 14 days, we refund the month and you keep the videos.",
   },
@@ -134,7 +134,7 @@ export const faqs = [
   },
   {
     q: "How fast do I get edits back?",
-    a: "The first cut of each long-form video arrives within 72 hours of upload. Shorts arrive in batches each week. You get two rounds of revisions per video.",
+    a: "The first cut of each long-form video arrives within 72 hours of upload. Shorts arrive in batches each week. Revisions are unlimited until you're happy with the video.",
   },
   {
     q: "Can I cancel?",
