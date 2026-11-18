@@ -1,0 +1,64 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+// Draft: have a lawyer review. Name the state in jurisdiction once confirmed.
+const legal = {
+  entity: "VidPace",
+  jurisdiction: "the United States",
+  email: "support@vidpace.com",
+  billingDay: "the same date each month as your first payment",
+  notice: "15 days",
+  updated: "November 18, 2026",
+};
+---
+<Base title="Terms of service" description="The terms that apply when you work with VidPace: plans, billing, cancellation, refunds, ownership and revisions.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Home</a> / Terms</p>
+      <h1 class="display h1">Terms of service</h1>
+      <p class="lede">Last updated {legal.updated}</p>
+    </div>
+  </section>
+  <section class="section tight" style="border-top:0;padding-top:0">
+    <div class="wrap prose">
+      <h2>Who we are</h2>
+      <p>VidPace is a business based in {legal.jurisdiction} ("VidPace", "we", "us"). These terms apply to anyone who buys a plan or uses our services ("you").</p>
+
+      <h2>What we do</h2>
+      <p>We edit videos, design thumbnails, write titles, descriptions and chapters, and post to your channel, as listed in the plan you choose on our <a href="/pricing">pricing page</a>. Anything outside your plan is quoted separately before we start.</p>
+
+      <h2>Billing</h2>
+      <p>Plans are billed monthly in advance, in US dollars, on {legal.billingDay}. Work for a month starts once that month's payment clears. You can move to a different plan from your next billing date.</p>
+
+      <h2>Cancelling</h2>
+      <p>Plans are {site.terms.contract.toLowerCase()}, with no minimum term. Email {legal.email} at least {legal.notice} before your next billing date to cancel. We finish the work already paid for, and you are not charged again.</p>
+
+      <h2>Refunds and the 14-day guarantee</h2>
+      <p>{site.terms.guarantee} The guarantee covers your first month only. Ask for it by email within 14 days of your first payment. After that, payments are not refundable, except where the law requires it.</p>
+
+      <h2>Turnaround and revisions</h2>
+      <p>We aim to deliver your first edit within 72 hours of receiving your footage and brief. Later turnaround follows the schedule we agree at onboarding. Revisions are unlimited on every video. A revision changes the agreed video; a new concept or new footage counts as a new video.</p>
+
+      <h2>What we need from you</h2>
+      <p>Timely footage, feedback and access to the accounts we manage. If we're waiting on you, delivery dates move by the same amount of time. You confirm you have the rights to everything you send us: footage, music, logos and likenesses.</p>
+
+      <h2>Who owns the work</h2>
+      <p>Once the month is paid, you own every file we deliver for that month, including edits, thumbnails and project files. We may show the work in our portfolio unless you ask us not to. Stock music, fonts and assets stay under their own licences.</p>
+
+      <h2>Your channel and results</h2>
+      <p>You keep full ownership and control of your channels. We follow YouTube's and each platform's rules, but we don't control their algorithms, monetisation decisions or policies, so we can't guarantee views, subscribers or revenue.</p>
+
+      <h2>Confidentiality</h2>
+      <p>We keep your unreleased videos, account access and business details private, and use them only to provide our services. See our <a href="/privacy">privacy page</a> for how we handle personal data.</p>
+
+      <h2>Limits of liability</h2>
+      <p>To the extent the law allows, our total liability for any claim is limited to the fees you paid us in the three months before the claim. We are not liable for indirect losses such as lost revenue, or for platform actions taken against your account.</p>
+
+      <h2>Changes and governing law</h2>
+      <p>We may update these terms and will email active clients before changes take effect. These terms are governed by the laws of {legal.jurisdiction}.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms: <a href={`mailto:${legal.email}`}>{legal.email}</a>.</p>
+    </div>
+  </section>
+</Base>
